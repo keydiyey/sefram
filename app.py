@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 st.set_page_config(page_title="sefram?", layout="wide")
 
 with st.sidebar:
-    uploaded_file = st.file_uploader("Choose a file", type=["rec", "csv", "txt"])
+    uploaded_file = st.file_uploader("Choose a file", type=["csv", "txt"])
 
 @st.cache_data
 def parse_and_downsample_file(file_bytes):
@@ -67,14 +67,20 @@ if uploaded_file is not None:
                 name=col
             ))
             
-        thresholds = [82, 80, 78, -28, -30, -32]
+        
+        thresholds = [118, 120, 122, -38, -40, -42]
+
+        # add aut
+
         for t in thresholds:
             fig.add_hline(
                 y=t, 
                 line_dash="dash", 
                 line_color="red", 
-                line_width=1.5
+                line_width=1
             )
+
+        fig.add_hline(y=25, line_color="blue", line_width=1.5)
             
         fig.update_layout(
             xaxis_title="Duration (min)",
