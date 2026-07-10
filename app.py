@@ -68,7 +68,7 @@ if uploaded_file is not None:
             ))
             
         
-        thresholds = [118, 120, 122, -38, -40, -42]
+        thresholds = [78, 80, 82, -28, -30, -32]
 
         # add aut
 
