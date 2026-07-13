@@ -80,10 +80,7 @@ if uploaded_file is not None:
         st.error(channel_cols)
     else:
         df_final['Mean_Temp'] = df_final[channel_cols].mean(axis=1)
-        
         df_final['Smoothed_Temp'] = df_final['Mean_Temp'].rolling(window=5, center=True, min_periods=1).mean()
-        
-
         df_final['Slope'] = df_final['Smoothed_Temp'].diff().fillna(0)
         
 
@@ -187,8 +184,8 @@ if uploaded_file is not None:
         st.plotly_chart(fig, width='stretch')
         
 
-        st.subheader("summary")
-        st.dataframe(new_df, width='stretch', hide_index=True)
+        with st.expander("summary", expanded=False):
+            st.dataframe(new_df, width='stretch', hide_index=True)
             
         with st.expander("Cleaned Raw Data", expanded=False):
             st.dataframe(df_final[['Duration (min)'] + channel_cols], width='stretch')
